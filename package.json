@@ -1,16 +1,23 @@
 {
-  "name": "index.js",
+  "name": "Meteo_Open",
   "version": "1.0.0",
-  "main": "meteo.js",
+  "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "knex": "^3.1.0",
     "node-fetch": "^2.7.0",
-    "qs": "^6.11.2"
+    "pg": "^8.13.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   },
   "description": ""
 }

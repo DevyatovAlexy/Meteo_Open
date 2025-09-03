@@ -1,14 +1,21 @@
+require ('dotenv').config()
 const express = require('express')
+const meteoRouters = require('./routes/meteoRouters')
 const app = express()
-const port = 3000
+const port =process.env.PORT || 3001
 
-const {getTemperature} = require('./meteo')
+app.use(express.json())
 
-app.get('/temperature', async  (req, res) => {
-    res.send( await getTemperature(req.query.cityName))
-    })
+app.get('/', (req,res)=>{
+    res.send('Welcome')
+})
+app.use('/temperature', meteoRouters)
 
-
+//Обработка ошибок
+app.use((err, req, res, next) => {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

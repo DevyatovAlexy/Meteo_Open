@@ -17,12 +17,12 @@ async function apiRequest(url, params) {
     }
 }
 
-async function getTemperature(value) {
+ async function getTemperature(value) {
     const coordinates = await getCityCoordinates(value)
     const temperature = await getMeteo(coordinates[0].lat, coordinates[0].lon)
     if (coordinates === undefined) {
         throw new Error('Wrong argument %Сity coordinates are not defined%')
-    }
+    }else
     if (temperature === undefined) {
         throw new Error('Wrong argument %Тo temperature found%')
     } else return temperature.current
@@ -35,7 +35,7 @@ async function getCityCoordinates(value) {
     }
     const url = new URL(CITY_API_BASE_URL)
     const params = {
-        q: value, api_key: API_KEY,
+        q: value, api_key: API_KEY
     }
     return await apiRequest(url, params)
    }
@@ -51,4 +51,4 @@ async function getMeteo(latitude, longitude) {
     }
     return await apiRequest(url, params)
 }
-module.exports = { getTemperature }
+module.exports = { getTemperature, getCityCoordinates , getMeteo}
